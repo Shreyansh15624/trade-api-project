@@ -25,8 +25,8 @@ def fetch_market_data(sector: str):
             # This approach helps keep the API fast, while ensuring that the LLM has pletny context
 
             for resul in results:
-                title = result.get('title', 'No Title')
-                body =  result.get('body', 'No Content')
+                title = results.get('title', 'No Title')
+                body =  results.get('body', 'No Content')
                 scraped_data.append(f"Title: {title}\nSnippet: {body}\n")
             
         if not scraped_data:
