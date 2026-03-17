@@ -1,0 +1,19 @@
+# --- Python Artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual Environments (uv) ---
+.venv/
+venv/
+env/
+
+# --- Environment Variables (CRITICAL) ---
+.env
+
+# --- IDEs and Editors ---
+.vscode/
+
+# --- OS Generated Files ---
+.DS_Store
+Thumbs.db
