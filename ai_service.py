@@ -20,7 +20,7 @@ genai.cofigure(api_key=api_key)
 # Initialize the model (Using flash for speed, which is grate for API responses)
 model = genai.GenerativeModel('genai-2.5-flash')
 
-def generate_Market_Report(sector: str, scraped_data: str):
+def generate_market_report(sector: str, scraped_data: str):
     """
     This function takes the raw scraped data and uses Gemini to generate a structured markfown report.
     """
