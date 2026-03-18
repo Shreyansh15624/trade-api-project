@@ -71,18 +71,5 @@ This project includes automated tests for the security middleware and the core e
 
 ```bash
 uv run pytest
-
 ```
 
-```
-
-### The Final Stretch
-
-Once you have that file saved, you just need to do your final Git workflow:
-```bash
-git add README.md
-git commit -m "docs: add comprehensive README with setup instructions and architecture overview"
-
-```
-
-How does that look to you? Are you ready to zip this up or push it to GitHub and draft that submission email?
