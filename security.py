@@ -1,4 +1,3 @@
-from tests.test_main import client
 from fastapi import HTTPException, Security, Request
 from fastapi.security import APIKeyHeader
 import time
@@ -18,7 +17,7 @@ TIME_WINDOW = 60 # seconds
 async def verify_auth_and_rate_limit(request: Request, api_key: str = Security(API_KEY_HEADER)):
     # Middleware function that checks for the API Key & counts the request per IP
     if api_key != DUMMY_TOKEN: # Checking Auth
-        raise HTTPException(status_code=401, detail="Unauthrized! Please provide a guest token in the X-API_Key Header!")
+        raise HTTPException(status_code=401, detail="Unauthorized! Please provide a guest token in the X-API-Key Header!")
     
     # Check Rate Limit
     client_ip = request.client.host

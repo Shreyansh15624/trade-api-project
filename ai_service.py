@@ -1,10 +1,10 @@
 import os
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 import logging
 
 # Setting up Logging
-logging.baseConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Loading the Environment Variables
@@ -15,10 +15,8 @@ api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
     raise ValueError("GEMINI_API_KEY is missing, please check the .env file!")
 
-genai.cofigure(api_key=api_key)
-
-# Initialize the model (Using flash for speed, which is grate for API responses)
-model = genai.GenerativeModel('genai-2.5-flash')
+# NEW SDK: Initialize the client
+client = genai.Client(api_key=api_key)
 
 def generate_market_report(sector: str, scraped_data: str):
     """
@@ -50,7 +48,10 @@ def generate_market_report(sector: str, scraped_data: str):
 
     try:
         # Send the prompt to Gemini API
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+        )
         return response.text
     
     except Exception as e:

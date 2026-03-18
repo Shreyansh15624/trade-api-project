@@ -1,8 +1,8 @@
-from duckduckgo_search import DDGS
+from ddgs import DDGS
 import logging
 
 # Simple logging setup to monitor the process via the Kubuntu Terminal
-logging.baseConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def fetch_market_data(sector: str):
