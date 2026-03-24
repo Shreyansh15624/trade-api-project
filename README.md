@@ -1,4 +1,4 @@
-# 📈 Trade Opportunities API: Real-Time Market Analysis
+# 📈 MarketIntel Engine: Real-Time Market Analysis
 
 ![CI/CD Build](https://img.shields.io/badge/build-passing-brightgreen)
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
