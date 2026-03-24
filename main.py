@@ -8,7 +8,7 @@ import time
 # Initializing the Application!
 app = FastAPI(
     title="Trade Opportuinites API",
-    desription="Analyzes market data & provides trade opportunity insights for specific sectors in India",
+    desription="Analyzes market data & provides trade opportunity insights for specified sectors in India",
     version="1.0.0",
 )
 
@@ -16,12 +16,13 @@ app = FastAPI(
 # The 'dependencies' array forces the request to pass our security checks first
 @app.get("/analyze/{sector}", dependencies=[Depends(verify_auth_and_rate_limit)])
 async def analyze_sector(sector: str):
-    # Analyzes the specificed market sector and returns a structured markdown report
-    
+    """
+    Analyzes the specificed market sector and returns a structured markdown report
+    """
     # Staring the stopwatch
     start_time = time.time()
     
-    # Formatting the sector identifier to be lower case & stripping whitespaces tohave cleaner data
+    # Formatting the sector identifier to be lower case & stripping whitespaces to have cleaner data
     clean_sector = sector.lower().strip()
 
     if not clean_sector:

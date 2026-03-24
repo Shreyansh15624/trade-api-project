@@ -1,68 +1,73 @@
-# Trade Opportunities API
+# 📈 Trade Opportunities API: Real-Time Market Analysis
 
-A robust FastAPI service that analyzes market data and provides trade opportunity insights for specific sectors in India.
+![CI/CD Build](https://img.shields.io/badge/build-passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![Python Version](https://img.shields.io/badge/python-3.12%2B-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)
 
-## System Architecture & Features
+## Description
 
-This project implements a clean separation of concerns across three main layers:
-1. **API & Security Layer (`security.py`, `main.py`):** Handles routing, simple guest authentication via headers, and an in-memory IP-based rate limiter (max 5 requests per 60 seconds).
-2. **Data Collection Layer (`data_scraper.py`):** Utilizes `ddgs` (DuckDuckGo Search) to scrape real-time, region-specific (`in-en`) market data without requiring paid search API keys.
-3. **AI Analysis Layer (`ai_service.py`):** Integrates the latest `google-genai` Python SDK to pipe scraped data into the `gemini-2.5-flash` model, generating structured, markdown-formatted reports.
+Analyzing real-time market opportunities often requires expensive, rate-limited APIs or manual data aggregation across fragmented financial sources. To bridge the gap between unstructured web data and actionable market intelligence, I developed a robust FastAPI service capable of autonomously scraping, processing, and analyzing region-specific sector data. By implementing a clean, three-layer architecture, the service structurally maps raw DuckDuckGo Search results into an AI analysis pipeline, utilizing the latest `google-genai` Python SDK to generate structured, markdown-formatted reports with high precision.
 
-## Prerequisites
+Because exposing data collection and AI inference endpoints carries significant operational and financial risk, I engineered a custom security layer featuring simple header-based authentication and an in-memory, IP-based rate limiter to restrict users to 5 requests per 60 seconds. Once authenticated, the API utilizes asynchronous routing to fetch real-time market data without requiring paid search API keys, directly feeding the `gemini-2.5-flash` model to provide immediate, synthesized market insights safely and efficiently.
 
-* Python 3.12+
-* [uv](https://github.com/astral-sh/uv) (Extremely fast Python package manager)
+## Motivation
 
-## Setup Instructions
+This project was built to demonstrate a modern, production-ready backend architecture using Python 3.12 and FastAPI. It highlights a clean separation of concerns across routing, data acquisition, and LLM integration. By leveraging `uv` for blazing-fast dependency management and engineering a custom scraping layer to bypass the need for paid search APIs, the project serves as a showcase of resourceful system design and AI integration.
 
-1. **Clone the repository and navigate to the directory:**
-    ```bash
-    git clone <your-repo-link>
-    cd trade-api-project
-    ```
+## Quick Start
 
-2. **Install dependencies using `uv`:**
-    ```bash
-    uv sync
-    ```
+The project utilizes `uv` for extremely fast dependency management and environment setup. 
 
+**1. Clone the repository:**
+```bash
+git clone https://github.com/Shreyansh15624/trade-api-project
+cd trade-api-project
+```
+
+**2. Install dependencies using `uv`:**
+```bash
+uv sync
+```
 *(Alternatively, use `pip install -r requirements.txt`)*
-3. **Configure Environment Variables:**
-    Create a `.env` file in the root directory and add your Google Gemini API key:
-    ```env
-    GEMINI_API_KEY=your_actual_api_key_here
-    ```
 
-## Running the Application
+**3. Configure Environment Variables:**
+Create a `.env` file in the root directory and add your Google Gemini API key:
+```env
+GEMINI_API_KEY=your_actual_api_key_here
+```
 
-Start the Uvicorn server:
+**4. Start the Application:**
 ```bash
 uv run uvicorn main:app
 ```
 
-### API Documentation
+## Usage
 
-Once the server is running, FastAPI automatically provides interactive documentation. Visit:
-
+Once the server is running, FastAPI automatically provides interactive documentation. You can view the endpoints and test the API directly via:
 * **Swagger UI:** `http://127.0.0.1:8000/docs`
 * **ReDoc:** `http://127.0.0.1:8000/redoc`
 
-## Usage Example
-
-Use `curl` to test the endpoint. Note that the custom `X-API-Key` header is required for authentication.
-
+**Example API Request:**
+Use `curl` to test the endpoint. The custom `X-API-Key` header is required to pass the security middleware.
 ```bash
-curl -H "X-API-Key: appscrip-guest-token" [http://127.0.0.1:8000/analyze/pharmaceuticals](http://127.0.0.1:8000/analyze/pharmaceuticals)
-
+curl -H "X-API-Key: guest-token" http://127.0.0.1:8000/analyze/pharmaceuticals
 ```
-
 *The API will return a purely formatted Markdown string containing the market analysis, execution time, and insights.*
 
-## Running Tests
-
+**Running the Automated Test Suite:**
 This project includes automated tests for the security middleware and the core endpoint using `pytest`.
-
 ```bash
 uv run pytest
 ```
+
+## Contributing
+
+Contributions are welcome! If you'd like to improve the analysis pipeline or add new data sources:
+1. Fork the repository.
+2. Create a new branch for your feature (`git checkout -b feature/NewMarketSource`).
+3. Commit your changes (`git commit -m 'Add new DuckDuckGo scraping parameters'`).
+4. Push to the branch (`git push origin feature/NewMarketSource`).
+5. Open a Pull Request.
+
+Please ensure all new features pass the existing `pytest` suite before submitting a PR.
