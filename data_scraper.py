@@ -24,6 +24,7 @@ def fetch_market_data(sector: str):
             # Fecthing about 5 recent search results specifically from the Indian Region ('in-en')
             # This approach helps keep the API fast, while ensuring that the LLM has pletny context
 
+            print(f"DEBUG: Scraped Results Count: {len(results)}")
             for result in results:
                 title = result.get('title', 'No Title')
                 body =  result.get('body', 'No Content')

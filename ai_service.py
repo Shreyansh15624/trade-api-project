@@ -22,7 +22,7 @@ def generate_market_report(sector: str, scraped_data: str):
     """
     This function takes the raw scraped data and uses Gemini to generate a structured markfown report.
     """
-    logger.info(f"Generating Ai report for the '{sector}' sector...")
+    logger.info(f"Generating AI report for the '{sector}' sector...")
 
     # This is our Main Prompt, engineered to serve a very specific purpose!
     # We give the AI a Persona, the raw data, and strict output instructions.
