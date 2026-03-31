@@ -8,7 +8,7 @@ WORKDIR /marketintel
 COPY requirements.txt .
 
 # Installing the Python Dependencies
-RUN pip install --no-cache-dir -r -requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copying the backed code (The .dockerignore will automatically block the listed folders here)
 COPY . .
