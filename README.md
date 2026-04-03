@@ -4,12 +4,18 @@
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 ![Python Version](https://img.shields.io/badge/python-3.12%2B-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)
+![AWS](https://img.shields.io/badge/AWS-EC2-FF9900?logo=amazon-ec2)
 
 ## Description
 
 Analyzing real-time market opportunities often requires expensive, rate-limited APIs or manual data aggregation across fragmented financial sources. To bridge the gap between unstructured web data and actionable market intelligence, I developed a robust FastAPI service capable of autonomously scraping, processing, and analyzing region-specific sector data. By implementing a clean, three-layer architecture, the service structurally maps raw DuckDuckGo Search results into an AI analysis pipeline, utilizing the latest `google-genai` Python SDK to generate structured, markdown-formatted reports with high precision.
 
 Because exposing data collection and AI inference endpoints carries significant operational and financial risk, I engineered a custom security layer featuring simple header-based authentication and an in-memory, IP-based rate limiter to restrict users to 5 requests per 60 seconds. Once authenticated, the API utilizes asynchronous routing to fetch real-time market data without requiring paid search API keys, directly feeding the `gemini-2.5-flash` model to provide immediate, synthesized market insights safely and efficiently.
+
+**🚀 Deployment Status & What's Next:** The core backend engine is fully containerized using **Docker** and is currently deployed live on an **AWS EC2** instance to ensure reliable, scalable compute.
+
+* **🔮 Coming Soon:** We are putting the finishing touches on a dedicated frontend! A public link featuring a complete, interactive User Interface is coming very soon.
 
 ## Motivation
 
@@ -39,7 +45,14 @@ GEMINI_API_KEY=your_actual_api_key_here
 
 **4. Start the Application:**
 ```bash
-uv run uvicorn main:app
+uv run main.py
+```
+
+**5. Docker Setup (Alternatively):**
+If you prefer to run this application via Docker, ensure docker is installed on your machine:
+```bash
+docker build -t marketintel-engine .
+docker run -d -p 8000:8000 --env-file .env marketintel-engine
 ```
 
 ## Usage
