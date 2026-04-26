@@ -26,7 +26,7 @@ def generate_market_report(sector: str, scraped_data: str):
 
     # This is our Main Prompt, engineered to serve a very specific purpose!
     # We give the AI a Persona, the raw data, and strict output instructions.
-    prompt="""
+    prompt=f"""
     You are an expert market analyst focusing on the Indian Market.
     I will provide you with the target sector and some recent news snippets scraped from the web.
     Your task is to analyze this data and write a structured market analysis report highlighting current trade opportunities in India.
