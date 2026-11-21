@@ -8,7 +8,7 @@ import time
 # Initializing the Application!
 app = FastAPI(
     title="Trade Opportuinites API",
-    desription="Analyzes market data & provides trade opportunity insights for specified sectors in India",
+    description="Analyzes market data & provides trade opportunity insights for specified sectors in India",
     version="1.0.0",
 )
 
